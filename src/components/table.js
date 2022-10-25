@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useReactToPrint } from 'react-to-print';
 
 function Table({etudiants, filterData, setFilterData, handleSubmit}) {
 	const handleChange=(data)=>{
@@ -12,6 +13,10 @@ function Table({etudiants, filterData, setFilterData, handleSubmit}) {
 		e.preventDefault()
 		navigate("details",{state:item})
 	}
+	const tableRef=useRef()
+	const handlePrint = useReactToPrint({
+		content: () => tableRef.current,
+	  });
   return (
 	<>
 		<div className="d-flex">
@@ -50,14 +55,17 @@ function Table({etudiants, filterData, setFilterData, handleSubmit}) {
 		</div>
 		<section className="ftco-section">
 			<div className="container">
-				<div className="row justify-content-center">
-					<div className="col-md-6 text-center mb-5">
-						<h2 className="heading-section">THE Liste </h2>
-					</div>
-				</div>
 				<div className="row">
 					<div className="col-md-12">
-						<div className="">
+							<div class="d-flex justify-content-end ">
+								<button onClick={handlePrint} class="btn btn-info  shadow-none">Exporter</button>
+							</div>
+						<div ref={tableRef} className="">
+							
+							<div className="text-center text-uppercase mb-5">
+								<h4 className="heading-section">Liste de présence {filterData.filiere} {filterData.date && `du ${filterData.date}`}</h4>
+							</div>
+							
 							<table className="table table-striped">
 							<thead>
 								<tr>
