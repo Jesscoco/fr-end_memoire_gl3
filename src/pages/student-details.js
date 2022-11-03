@@ -5,22 +5,22 @@ import Details from "../components/details";
 import moment from 'moment';
 import 'moment/locale/fr'
 import axios from 'axios';
+import Footer from '../components/Footer';
 moment.locale('fr')
-
 
 export default function StudentDetails() {
   const {state}=useLocation()
-  console.log(state)
   const [presences, setPresences] = useState([])
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/etudiants/liste/${state.id}`).then((response)=>{
       setPresences(response.data)
     } ).catch(error=>console.error(error))
-    }, [])
+    }, [state.id])
   return (
     < >
       <Navbar/>
-      <Details userinfo={state}/>
+	  <div className='mt-5'>	  </div>
+      <Details userinfo={state} presences={presences}/>
       <section className="ftco-section">
 			<div className="container">
 				<div className="row justify-content-center">
@@ -54,6 +54,7 @@ export default function StudentDetails() {
 				</div>
 			</div>
 		</section>
+		< Footer />
     </>
     
   )

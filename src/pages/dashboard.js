@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Table from '../components/table';
 import axios from 'axios';
+import Footer from '../components/Footer';
 
 export default function Dashboard() {
   const [etudiant, setEtudiant] = useState([])
@@ -22,6 +23,7 @@ export default function Dashboard() {
     <div className="mt-5 pt-5">
       <Navbar/>
       <Table etudiants={etudiant} filterData={filterData} setFilterData= {setFilterData} handleSubmit={handleSubmit}/>
+      <Footer/>
     </div> 
   )
 }

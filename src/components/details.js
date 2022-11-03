@@ -4,7 +4,7 @@ import 'moment/locale/fr'
 import AttendanceChart from './attendanceChart'
 moment.locale('fr')
 
-export default function Details({userinfo}){
+export default function Details({userinfo, presences} ){
     return(
         <>
             <section >
@@ -73,7 +73,7 @@ export default function Details({userinfo}){
                             </div>
                         </div>
                         <div className="col-lg-5">
-                        <AttendanceChart/>
+                        <AttendanceChart presences={presences} userinfo={userinfo}/>
                         </div>
                     </div>
                 </div>

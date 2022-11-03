@@ -6,11 +6,10 @@ export default function Navbar() {
     <nav className="navbar bg-light shadow fixed-top">
     <div className="container-fluid">
         <a className="navbar-brand" href>
-            <img src="../../public/img/logo_ifri.jpg" alt="Logo IFRI" width="30" height="24" className="d-inline-block align-text-top"/>
+            <img src="./img/logo_ifri.jpg" alt="Logo IFRI" width="70" height="50" className="d-inline-block align-text-top"/>
         </a>
         <ul>
           <Link to="/" class="btn btn-light shadow-none">Accueil</Link>
-          <button type="button" class="btn btn-light">Others</button>  
         </ul>
     </div>
     </nav>
