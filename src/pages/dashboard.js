@@ -6,7 +6,8 @@ import Footer from '../components/Footer';
 
 export default function Dashboard() {
   const [etudiant, setEtudiant] = useState([])
-  const [filterData, setFilterData] = useState({anneeScolaire:'', classe:'',filiere:'',date:''})
+  const [filterData, setFilterData] = useState({anneeScolaire:'', classe:'',filiere:'',date:'',matricule:''})
+  const [submitData, setSubmitData] = useState({anneeScolaire:'', classe:'',filiere:'',date:'',matricule:''})
   useEffect(() => {
   axios.get(`${process.env.REACT_APP_BACKEND_URL}/etudiants/`).then((response)=>{
     setEtudiant(response.data)
@@ -16,13 +17,14 @@ export default function Dashboard() {
     console.log(filterData)
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/etudiants/getstudent/`,filterData).then((response)=>{
       console.log(response.data.data)
+      setSubmitData(filterData)
       setEtudiant(response.data.data)
     } ).catch(error=>console.error(error)) 
 	}
   return (
     <div className="mt-5 pt-5">
       <Navbar/>
-      <Table etudiants={etudiant} filterData={filterData} setFilterData= {setFilterData} handleSubmit={handleSubmit}/>
+      <Table etudiants={etudiant} filterData={filterData} setFilterData= {setFilterData} handleSubmit={handleSubmit} submitData={submitData}/>
       <Footer/>
     </div> 
   )

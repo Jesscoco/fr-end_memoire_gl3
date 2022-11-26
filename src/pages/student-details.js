@@ -25,18 +25,18 @@ export default function StudentDetails() {
 			<div className="container">
 				<div className="row justify-content-center">
 					<div className="col-md-6 text-center mb-5">
-						<h2 className="heading-section">Les Présences  </h2>
+						<h2 className="heading-section" style= {{color:'#0074fe'}}>LES PRESENCES DE L'ETUDIANT  </h2>
 					</div>
 				</div>
 				<div className="row">
 					<div className="col-md-12">
 						<div className="">
-							<table className="table table-striped">
+							<table className="table table-striped" >
 							<thead>
-								<tr>
-								<th>N*</th>
-								<th>Date</th>
-								<th>Heure</th>
+								<tr style= {{backgroundColor:'#0074fe'}}>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>N*</th>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>Date</th>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>Heure</th>
 								</tr>
 							</thead>
 							<tbody>

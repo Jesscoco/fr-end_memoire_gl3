@@ -9,7 +9,7 @@ export default function Navbar() {
             <img src="./img/logo_ifri.jpg" alt="Logo IFRI" width="70" height="50" className="d-inline-block align-text-top"/>
         </a>
         <ul>
-          <Link to="/" class="btn btn-light shadow-none">Accueil</Link>
+          <Link to="/" class="btn shadow-none" style= {{color:'#0074fe', fontWeight:'bolder'}}>Accueil</Link>
         </ul>
     </div>
     </nav>

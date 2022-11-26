@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print';
-
-function Table({etudiants, filterData, setFilterData, handleSubmit}) {
+import moment from "moment";
+import 'moment/locale/fr'
+moment.locale('fr')
+function Table({etudiants, filterData, setFilterData, handleSubmit, submitData}) {
 	const handleChange=(data)=>{
 		setFilterData((previousData)=>{
 			return{...previousData, ...data}
@@ -45,35 +47,42 @@ function Table({etudiants, filterData, setFilterData, handleSubmit}) {
 				<option value="Sécurite Informatique">Sécurité Informatique</option>
 			</select>
 			</div>
+
 			<div className="p-4 shadow-sm ml-5 bd-rounded">
 			<input type={'date'} className="form-control shadow-none" value={filterData.date} onChange={event=>handleChange({date: event.target.value})} aria-label="Default select example"/>
 			</div>
-			<div className='p-4'>
-				<button type="button" className="btn btn-secondary shadow-none"onClick={()=> handleSubmit()}>Rechercher</button>
+
+			<div className="p-4 shadow-sm ml-5 bd-rounded">
+				<input placeholder={'Matricule'} type={'number'} className="form-control shadow-none" value={filterData.matricule} onChange={event=>handleChange({matricule: event.target.value})} aria-label="Default select example"/>
 			</div>
 
+			<div className='p-4'>
+				<button type="button" className="btn  shadow"onClick={()=> handleSubmit()} style= {{backgroundColor:'#0074fe', color:'#fff', fontWeight:'bolder' }} >Rechercher</button>
+			</div>
 		</div>
 		<section className="ftco-section">
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12">
 							<div class="d-flex justify-content-end ">
-								<button onClick={handlePrint} class="btn btn-info  shadow-none">Exporter</button>
+								<button onClick={handlePrint} class="btn  shadow" style= {{backgroundColor:'#0074fe', color:'#fff'}}>Exporter</button>
 							</div>
 						<div ref={tableRef} className="">
 							
 							<div className="text-center text-uppercase mb-5">
-								<h4 className="heading-section">Liste de présence {filterData.filiere} {filterData.date && `du ${filterData.date}`}</h4>
+								<h4 className="heading-section" style= {{color:'#0074fe'}}>Liste de présence
+									{submitData && ` ${submitData.anneeScolaire} ${submitData.classe} ${submitData.filiere} ${submitData.date && moment(submitData.date).format('L')}`}
+								</h4>
 							</div>
 							
-							<table className="table table-striped">
-							<thead>
-								<tr>
-								<th>N*</th>
-								<th>Matricule</th>
-								<th>Nom</th>
-								<th>Prénoms</th>
-								<th>Spécialité</th>
+							<table className="table table-striped ">
+							<thead >
+								<tr style= {{backgroundColor:'#0074fe'}}>
+								<th style= {{color:'#fff', fontWeight:'bold'}} >N*</th>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>Matricule</th>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>Nom</th>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>Prénoms</th>
+								<th style= {{color:'#fff', fontWeight:'bold'}}>Spécialité</th>
 								</tr>
 							</thead>
 							<tbody>
